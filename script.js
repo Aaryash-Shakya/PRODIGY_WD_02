@@ -24,14 +24,11 @@ const getTwoDigit = (val) => {
 
 const stopwatch = () => {
     if (clockActive) {
-        ms++
-        if (ms == 100) {
+        if (++ms == 100) {
             ms = 0
-            sec++
-            if (sec == 60) {
+            if (++sec == 60) {
                 sec = 0
-                min++
-                if (min == 60) {
+                if (++min == 60) {
                     min = 0
                     hr++
                     hrDisplay.innerText = getTwoDigit(hr)
@@ -56,6 +53,9 @@ stopBtn.onclick = () => {
 }
 
 lapBtn.onclick = () => {
+    if (lapIndex > 10) {
+        return alert('Maximum lap record reached')
+    }
     lapScore += `<p>${lapIndex++}.  ${getTwoDigit(hr)}:${getTwoDigit(min)}:${getTwoDigit(sec)}:${getTwoDigit(ms)}</p>`
     lapBox.innerHTML = lapScore
 }
@@ -68,6 +68,7 @@ resetBtn.onclick = () => {
     secDisplay.innerText = getTwoDigit(sec)
     msDisplay.innerText = getTwoDigit(ms)
 
+    lapIndex = 0
     lapScore = ''
     lapBox.innerText = '1. --:--:--:--'
 }
