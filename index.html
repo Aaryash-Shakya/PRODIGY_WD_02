@@ -1,30 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>StopWatch Web Application</title>
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
     <h1>Stopwatch Web Application</h1>
     <div class="clock-body">
         <div class="clock-col">
             <div class="display" id="hrClock">00</div>
             <p class="unit">hour</p>
+            <button id="startBtn">Start</button>
         </div>
         <div class="clock-col">
             <div class="display" id="minClock">00</div>
             <p class="unit">min</p>
+            <button id="stopBtn">Stop</button>
         </div>
         <div class="clock-col">
             <div class="display" id="secClock">00</div>
             <p class="unit">sec</p>
+            <button id="lapBtn">Lap</button>
         </div>
         <div class="clock-col">
             <div class="display" id="msClock">00</div>
             <p class="unit">ms</p>
+            <button id="resetBtn">Reset</button>
         </div>
     </div>
+
+    <script src="script.js"></script>
 </body>
+
 </html>
