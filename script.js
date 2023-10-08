@@ -11,27 +11,35 @@ const resetBtn = document.getElementById('resetBtn')
 let hr = 0, min = 0, sec = 0, ms = 0
 let clockActive = false
 
-const stopwatch = () => {
-    ms++
-    if (ms == 100) {
-        ms = 0
-        sec++
-        if (sec == 60) {
-            sec = 0
-            min++
-            if (min == 60) {
-                min = 0
-                hr++
-                hrDisplay.innerText = hr
-            }
-            minDisplay.innerText = min
-        }
-        secDisplay.innerText = sec
+const setDisplay = (element, val) => {
+    // alternate if(val.toString().length == 1)
+    if (val < 10) {
+        val = '0' + val
     }
-    msDisplay.innerText = ms
+    element.innerText = val
+}
 
+const stopwatch = () => {
     if (clockActive) {
-        setTimeout(stopwatch, 100)
+        ms++
+        if (ms == 100) {
+            ms = 0
+            sec++
+            if (sec == 60) {
+                sec = 0
+                min++
+                if (min == 60) {
+                    min = 0
+                    hr++
+                    setDisplay(hrDisplay, hr)
+                }
+                setDisplay(minDisplay, min)
+            }
+            setDisplay(secDisplay, sec)
+        }
+        setDisplay(msDisplay, ms)
+
+        setTimeout(stopwatch, 10)
     }
 }
 
@@ -47,8 +55,8 @@ stopBtn.onclick = () => {
 resetBtn.onclick = () => {
     clockActive = false;
     hr = 0, min = 0, sec = 0, ms = 0
-    hrDisplay.innerText = hr
-    minDisplay.innerText = min
-    secDisplay.innerText = sec
-    msDisplay.innerText = ms
+    setDisplay(hrDisplay, hr)
+    setDisplay(minDisplay, min)
+    setDisplay(secDisplay, sec)
+    setDisplay(msDisplay, ms)
 }
