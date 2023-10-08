@@ -75,19 +75,17 @@ h1 {
 
 button {
     margin-top: 1rem;
-    height: 4rem;
-    aspect-ratio: 1;
-    border-radius: 50%;
+    height: 2.2rem;
+    width: 4.5rem;
+    border-radius: 0.8rem;
     cursor: pointer;
     color: var(--background);
     font-size: 1rem;
     font-weight: bold;
     border: 1px solid var(--secondary);
-    /*  */
-    /* background-color: var(--accent); */
 }
 
-button:hover {
+button:hover,button:focus {
     filter: saturate(1.8);
     box-shadow: 0 0 15px 1px rgba(255, 255, 255, 0.2);
 }
