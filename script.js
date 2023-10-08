@@ -3,6 +3,8 @@ const minDisplay = document.getElementById('minClock')
 const secDisplay = document.getElementById('secClock')
 const msDisplay = document.getElementById('msClock')
 
+const lapBox = document.getElementById('lapBox')
+
 const startBtn = document.getElementById('startBtn')
 const stopBtn = document.getElementById('stopBtn')
 const lapBtn = document.getElementById('lapBtn')
@@ -10,13 +12,14 @@ const resetBtn = document.getElementById('resetBtn')
 
 let hr = 0, min = 0, sec = 0, ms = 0
 let clockActive = false
+let lapIndex = 1, lapScore = ''
 
-const setDisplay = (element, val) => {
+const getTwoDigit = (val) => {
     // alternate if(val.toString().length == 1)
     if (val < 10) {
         val = '0' + val
     }
-    element.innerText = val
+    return val
 }
 
 const stopwatch = () => {
@@ -31,13 +34,13 @@ const stopwatch = () => {
                 if (min == 60) {
                     min = 0
                     hr++
-                    setDisplay(hrDisplay, hr)
+                    hrDisplay.innerText = getTwoDigit(hr)
                 }
-                setDisplay(minDisplay, min)
+                minDisplay.innerText = getTwoDigit(min)
             }
-            setDisplay(secDisplay, sec)
+            secDisplay.innerText = getTwoDigit(sec)
         }
-        setDisplay(msDisplay, ms)
+        msDisplay.innerText = getTwoDigit(ms)
 
         setTimeout(stopwatch, 10)
     }
@@ -52,11 +55,19 @@ stopBtn.onclick = () => {
     clockActive = false;
 }
 
+lapBtn.onclick = () => {
+    lapScore += `<p>${lapIndex++}.  ${getTwoDigit(hr)}:${getTwoDigit(min)}:${getTwoDigit(sec)}:${getTwoDigit(ms)}</p>`
+    lapBox.innerHTML = lapScore
+}
+
 resetBtn.onclick = () => {
     clockActive = false;
     hr = 0, min = 0, sec = 0, ms = 0
-    setDisplay(hrDisplay, hr)
-    setDisplay(minDisplay, min)
-    setDisplay(secDisplay, sec)
-    setDisplay(msDisplay, ms)
+    hrDisplay.innerText = getTwoDigit(hr)
+    minDisplay.innerText = getTwoDigit(min)
+    secDisplay.innerText = getTwoDigit(sec)
+    msDisplay.innerText = getTwoDigit(ms)
+
+    lapScore = ''
+    lapBox.innerText = '1. --:--:--:--'
 }
